@@ -3,6 +3,7 @@ import sys
 import random
 import pygame
 from pygame.locals import *
+from cci.NaveFlyweightFactory import NaveFlyweightFactory
 from cdp.Personagens import Personagem
 from cih import Impressao
 from cih import JanelaMenu
@@ -284,10 +285,11 @@ def carregar():
 
 
 def cria_nave():
-    nave_escolhida = NaveJogadorBuilder.NaveJogadorBuilder()
+    factory = NaveFlyweightFactory.__init__(NaveFlyweightFactory)
+    nave_escolhida = factory.get_Standard_Jogador(1)
 
     n = Personagem.Personagem.criando_nave(nave_escolhida)
-    n.set_posicaox(Metricas.lim_largura / 2)
+    n.set_posicaox(int(Metricas.lim_largura) / 2)
     n.set_posicaoy(Metricas.lim_altura)
     n.start_area()
 
@@ -296,20 +298,20 @@ def cria_nave():
 
 def cria_nave_inimigo():
     aleatorio = random.randint(0, 20)
-
+    factory = NaveFlyweightFactory.__init__(NaveFlyweightFactory)
     if 0 <= aleatorio <= 3:
-        nave_escolhida = NavePersegueBuilder.NavePersegueBuilder()
+        nave_escolhida = factory.get_Standard_Persegue(5)
     elif 4 <= aleatorio <= 8:
-        nave_escolhida = NavePeaoBuilder.NavePeaoBuilder()
+        nave_escolhida = factory.get_Standard_Peao(7)
     elif 9 <= aleatorio <= 11:
-        nave_escolhida = NavePerdidaBuilder.NavePerdidaBuilder()
+        nave_escolhida = factory.get_Standard_Perdida(3)
     elif 10 <= aleatorio <= 17:
-        nave_escolhida = NaveGrupoBuilder.NaveGrupoBuilder()
+        nave_escolhida = factory.get_Standard_Grupo(7)
     else:
-        nave_escolhida = NaveFugaBuilder.NaveFugaBuilder()
+        nave_escolhida = factory.get_Standard_Fuga(1)
 
     n = Personagem.Personagem.criando_nave(nave_escolhida)
-    n.set_posicaoX(random.randrange(Metricas.lim_largura - 20))
+    n.set_posicaoX(random.randrange(int(Metricas.lim_largura) - 20))
     n.set_posicaoY(0)
     n.start_area()
 
