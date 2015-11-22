@@ -1,6 +1,7 @@
 #!/usr/local/bin/python
 import pygame
-from src.cih import ItemMenu
+from cci.Metricas import Metricas
+from cih import ItemMenu
 # -------------------------------------------------------------------------------
 # Name:        Nave Maluca 1.1
 # Author:      Gislaine  e Izabely
@@ -13,12 +14,6 @@ from src.cih import ItemMenu
 __author__ = 'Gislaine  e Izabely'
 
 pygame.init()
-
-WHITE = (255, 255, 255)
-RED = (255, 0, 0)
-BLACK = (0, 0, 0)
-FPS = 60
-
 
 class JanelaMenu(object):
 
@@ -64,7 +59,7 @@ class JanelaMenu(object):
         for item in self.itens:
 
             item.set_italic(False)
-            item.set_fonte_cor(WHITE)
+            item.set_fonte_cor(Metricas.color_white)
 
         if self.item_atual is None:
 
@@ -90,7 +85,7 @@ class JanelaMenu(object):
                 self.item_atual = 0
 
             self.itens[self.item_atual].set_italic(True)
-            self.itens[self.item_atual].set_fonte_cor(RED)
+            self.itens[self.item_atual].set_fonte_cor(Metricas.color_red)
 
         if key == pygame.K_SPACE or key == pygame.K_RETURN:
 
@@ -100,15 +95,14 @@ class JanelaMenu(object):
     @staticmethod
     def set_selecao_mouse(item, mpos1, mpos2):
 
-        """ Marca no menu o item que o mouse passou.
-        """
+        """ Marca no menu o item que o mouse passou. """
 
         if item.mouse_selecionado(mpos1, mpos2):
 
-            item.set_fonte_cor(RED)
+            item.set_fonte_cor(Metricas.color_red)
             item.set_italic(True)
 
         else:
 
-            item.set_fonte_cor(WHITE)
+            item.set_fonte_cor(Metricas.color_white)
             item.set_italic(False)

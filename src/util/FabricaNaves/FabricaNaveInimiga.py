@@ -1,4 +1,4 @@
-from src.util.FabricaNaves import FabricaNave
+from util.FabricaNaves import FabricaNave
 
 
 class FabricaNaveInimiga(FabricaNave):

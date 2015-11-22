@@ -1,5 +1,5 @@
-from src.util.FabricaItem import FabricaMunicao
-from src.cgd import Path
+from util.FabricaItem import FabricaMunicao
+from cgd import Path
 
 
 class FabricaMunicao1(FabricaMunicao):

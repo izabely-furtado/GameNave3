@@ -1,5 +1,5 @@
-from src.util.FabricaItem import FabricaItem
-from src.cgd import Path
+from util.FabricaItem import FabricaItem
+from cgd import Path
 
 
 class FabricaVida(FabricaItem):

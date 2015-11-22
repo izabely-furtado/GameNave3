@@ -1,6 +1,6 @@
-from src.util.Build import NaveBuilder
-from src.util.FabricaNaves import FabricaNavePeao
-from src.cgd import Path
+from util.Build import NaveBuilder
+from util.FabricaNaves import FabricaNavePeao
+from cgd import Path
 
 
 class NavePeaoBuilder(NaveBuilder):
@@ -15,7 +15,7 @@ class NavePeaoBuilder(NaveBuilder):
     # """--------------ATRIBUTO------------------"""
     #  @override
     def build_dano(self):
-        self.nave_product.dano = 0
+        self.nave_product.set_dano(0)
     
     #   @override
     def build_imagem_nave(self):

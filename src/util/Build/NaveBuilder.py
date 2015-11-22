@@ -1,4 +1,4 @@
-from src.util.Build import NaveProduct
+from util.Build import NaveProduct
 
 
 class NaveBuilder(object):

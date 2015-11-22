@@ -1,13 +1,7 @@
 import pygame
-from src.cdp.Habilidades import Resistencia
-from src.cdp.Habilidades import Municao
-from src.util import FabricaObjeto
-
-WIDTH = 1000
-HEIGTH = 600
-LIM_WIDTH = WIDTH - 65
-LIM_HEIGTH = HEIGTH - 50
-
+from cdp.Habilidades import Resistencia
+from cdp.Habilidades import Municao
+from util import FabricaObjeto
 
 class FabricaNave(FabricaObjeto):
 

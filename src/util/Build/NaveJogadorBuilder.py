@@ -1,6 +1,6 @@
-from src.util.Build import NaveBuilder
-from src.util.FabricaNaves import FabricaNaveJogador
-from src.cgd import Path
+from util.Build import NaveBuilder
+from util.FabricaNaves import FabricaNaveJogador
+from cgd import Path
 
 
 class NaveJogadorBuilder(NaveBuilder):
@@ -16,7 +16,7 @@ class NaveJogadorBuilder(NaveBuilder):
     #   @override
     @staticmethod
     def build_dano():
-        super(NaveBuilder).nave_product.dano = 0
+        super(NaveBuilder).nave_product.set_dano(0)
     
     #   @override
     @staticmethod

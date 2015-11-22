@@ -7,19 +7,16 @@ import pygame
 # Copyright:   (c) Gislaine  e Izabely 2015
 # Licence:     GIZ
 # -------------------------------------------------------------------------------
+from cci.Metricas import Metricas
+
 __author__ = 'Gislaine  e Izabely'
 
 
 pygame.init()
 
-WHITE = (255, 255, 255)
-RED = (255, 0, 0)
-BLACK = (0, 0, 0)
-
-
 class ItemMenu(pygame.font.Font):
 
-    def __init__(self, text, font=None, fonte_size=30, fonte_cor=WHITE, pos_x=0, pos_y=0):
+    def __init__(self, text, font=None, fonte_size=30, fonte_cor=Metricas.color_white, pos_x=0, pos_y=0):
 
         pygame.font.Font.__init__(self, font, fonte_size)
         self.text = text

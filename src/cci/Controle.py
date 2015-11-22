@@ -3,11 +3,12 @@ import sys
 import random
 import pygame
 from pygame.locals import *
-from src.cdp.Personagens import Personagem
-from src.cih import Impressao
-from src.cih import JanelaMenu
-from src.util.Build import (NavePerdidaBuilder, NaveFugaBuilder, NaveGrupoBuilder,
+from cdp.Personagens import Personagem
+from cih import Impressao
+from cih import JanelaMenu
+from util.Build import (NavePerdidaBuilder, NaveFugaBuilder, NaveGrupoBuilder,
                             NavePeaoBuilder, NavePersegueBuilder, NaveJogadorBuilder)
+from cci.Metricas import Metricas
 
 # -------------------------------------------------------------------------------
 # Name:        Nave Maluca 2.1

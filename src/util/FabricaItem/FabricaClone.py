@@ -1,4 +1,4 @@
-from src.util.FabricaItem import FabricaItem
+from util.FabricaItem import FabricaItem
 
 
 class FabricaClone(FabricaItem):

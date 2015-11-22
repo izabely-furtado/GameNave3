@@ -1,5 +1,5 @@
-from src.cdp.Habilidades import Resistencia
-from src.util.FabricaNaves import FabricaNaveInimiga
+from cdp.Habilidades import Resistencia
+from util.FabricaNaves import FabricaNaveInimiga
 
 
 class FabricaNaveFuga(FabricaNaveInimiga):

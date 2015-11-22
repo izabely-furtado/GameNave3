@@ -1,5 +1,5 @@
-from src.util.FabricaItem import FabricaClone
-from src.cgd import Path
+from util.FabricaItem import FabricaClone
+from cgd import Path
 
 
 class FabricaClone1(FabricaClone):

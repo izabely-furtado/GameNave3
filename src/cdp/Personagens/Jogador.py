@@ -1,5 +1,5 @@
-from src.cdp.Habilidades import Resistencia
-from src.cdp.Personagens import Personagem
+from cdp.Habilidades import Resistencia
+from cdp.Personagens import Personagem
 
 
 class Jogador(Personagem):

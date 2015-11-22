@@ -1,5 +1,5 @@
-from src.util.FabricaNaves import FabricaNave
-from src.cgd import Path
+from util.FabricaNaves import FabricaNave
+from cgd import Path
 
 
 class NaveProduct(object):

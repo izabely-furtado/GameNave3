@@ -1,4 +1,4 @@
-from src.util.Build import NaveJogoDirector
+from util.Build import NaveJogoDirector
 
 
 class Personagem(object):

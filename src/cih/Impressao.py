@@ -8,13 +8,9 @@ import pygame
 # Copyright:   (c) Gislaine  e Izabely 2015
 # Licence:     GIZ
 # -------------------------------------------------------------------------------
+from cci.Metricas import Metricas
+
 __author__ = 'Gislaine  e Izabely'
-
-WIDTH = 1000
-HEIGTH = 600
-LIM_WIDTH = WIDTH - 65
-LIM_HEIGTH = HEIGTH - 50
-
 
 pygame.init()
 pygame.font.init()
@@ -30,7 +26,7 @@ class Impressao(object):
     def imprime_instrucao():
         titulo = " - Nave maluca -Instrução"
 
-        tela = pygame.display.set_mode((WIDTH, HEIGTH), 0, 32)
+        tela = pygame.display.set_mode((Metricas.largura, Metricas.altura), 0, 32)
         pygame.display.set_caption(titulo)
         imagem = pygame.image.load("/home/gislaine/Dropbox/"
                                    "GameNave2.8-master/src/cgd/Imagem/instrucao.png").convert_alpha()
@@ -44,7 +40,7 @@ class Impressao(object):
 
         titulo = " - Nave maluca - Let's Play"
 
-        tela = pygame.display.set_mode((WIDTH, HEIGTH), 0, 32)
+        tela = pygame.display.set_mode((Metricas.largura, Metricas.altura), 0, 32)
         pygame.display.set_caption(titulo)
         imagem = pygame.image.load("/home/gislaine/Dropbox/"
                                    "GameNave2.8-master/src/cgd/Imagem/tela_espaco2.jpg").convert()
@@ -58,7 +54,7 @@ class Impressao(object):
 
         titulo = " - Nave maluca - Menu"
 
-        tela = pygame.display.set_mode((WIDTH, HEIGTH), 0, 32)
+        tela = pygame.display.set_mode((Metricas.largura, Metricas.altura), 0, 32)
         pygame.display.set_caption(titulo)
         imagem = pygame.image.load("/home/gislaine/Dropbox/GameNave2.8-master/src/cgd/Imagem/tela_menu3.jpg").convert()
 
@@ -71,7 +67,7 @@ class Impressao(object):
     @staticmethod
     def imprime_texto_fim():
 
-        tela = pygame.display.set_mode((WIDTH, HEIGTH), 0, 32)
+        tela = pygame.display.set_mode((Metricas.largura, Metricas.altura), 0, 32)
         titulo = " - Nave maluca - Game over"
         pygame.display.set_caption(titulo)
 

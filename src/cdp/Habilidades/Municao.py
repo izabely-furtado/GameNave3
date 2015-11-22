@@ -3,7 +3,8 @@ import random
 import pygame
 import sys
 from pygame.rect import Rect
-from src.cgd import Path
+from cci.Metricas import Metricas
+from cgd import Path
 # -------------------------------------------------------------------------------
 # Name:        Nave Maluca 2.1
 # Author:      Gislaine e Izabely
@@ -16,12 +17,6 @@ from src.cgd import Path
 __author__ = 'Gislaine  e Izabely'
 
 pygame.init()
-
-WIDTH = 1000
-HEIGTH = 600
-LIM_WIDTH = WIDTH - 65
-LIM_HEIGTH = HEIGTH - 50
-
 
 class Municao(object):
     def __init__(self, pos):
@@ -48,7 +43,7 @@ class Municao(object):
     @staticmethod
     def cria_posicao(pos):
         posicao = {}
-        if (pos < LIM_WIDTH - 30) and (pos < LIM_HEIGTH - 15):
+        if (pos < Metricas.lim_largura - 30) and (pos < Metricas.lim_altura - 15):
             posicao = {"x": pos["x"] + 30, "y": pos["y"] + 15}
         else:
             print("Posição invalida", sys.exc_info()[0])

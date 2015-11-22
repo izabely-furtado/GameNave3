@@ -1,5 +1,5 @@
-from src.cdp.Habilidades import Resistencia
-from src.util.FabricaNaves import FabricaNave
+from cdp.Habilidades import Resistencia
+from util.FabricaNaves import FabricaNave
 
 
 class FabricaNaveJogador(FabricaNave):
@@ -14,14 +14,6 @@ class FabricaNaveJogador(FabricaNave):
         self.posicao["y"] += self.velocidade["y"]
         self.cria_area()
 
-    """
-    #  @abc.override
-    def atira(self):
-        if self.cria_tiro(self.posicao) != "ERRO":
-            self.cria_tiro(self.posicao)
-        self.municao[-1].atira()
-        self.buzina()
-    """
     # """--------------ATRIBUTO------------------"""
 
     # @abc.override

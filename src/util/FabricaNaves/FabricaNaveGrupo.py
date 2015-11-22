@@ -1,11 +1,6 @@
-from src.cdp.Habilidades import Resistencia
-from src.util.FabricaNaves import FabricaNaveInimiga
-
-WIDTH = 1000
-HEIGTH = 600
-LIM_WIDTH = WIDTH - 65
-LIM_HEIGTH = HEIGTH - 50
-
+from cci.Metricas import Metricas
+from cdp.Habilidades import Resistencia
+from util.FabricaNaves import FabricaNaveInimiga
 
 class FabricaNaveGrupo(FabricaNaveInimiga):
     def __init__(self, figura_nave, figura_explosao, som):
@@ -16,7 +11,7 @@ class FabricaNaveGrupo(FabricaNaveInimiga):
     #    @abc.override
     def move(self):
         if self.posicao["direcao"] == "DIREITA":
-            if self.posicao["x"] < LIM_WIDTH:
+            if self.posicao["x"] < Metricas.lim_largura:
                 self.posicao["x"] += self.velocidade["x"]
             else:
                 self.posicao["direcao"] = "ESQUERDA"
