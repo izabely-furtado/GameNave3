@@ -1,4 +1,4 @@
-from cdp.Personagens.Jogador import Jogador
+from src.cdp.Personagens.Jogador import Jogador
 
 __author__ = 'IzabelyFurtado'
 

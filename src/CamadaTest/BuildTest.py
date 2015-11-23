@@ -1,4 +1,4 @@
-from util.Build.NaveProduct import NaveProduct
+from src.src.util.Build.NaveProduct import NaveProduct
 
 __author__ = 'IzabelyFurtado'
 

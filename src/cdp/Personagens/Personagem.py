@@ -1,4 +1,4 @@
-from util.Build import NaveJogoDirector
+from src.util.Build import NaveJogoDirector
 
 
 class Personagem(object):
@@ -10,44 +10,45 @@ class Personagem(object):
         nave_jogador = NaveJogoDirector.NaveJogoDirector(nave_builder)
         nave_jogador.contruir_nave()
         nave = nave_jogador.get_nave()
+        nave = nave.nave_fabrica
         return nave
 
     def get_area(self):
-        return self.veiculo.nave.get_area()
+        return self.veiculo.get_area()
 
-    def armamento(self):
-        return self.veiculo.nave.municao
+    def municao(self):
+        return self.veiculo.municao
 
     def remove_tiro(self, tiro):
         assert isinstance(self.veiculo, object)
-        self.veiculo.nave.municao.remove(tiro)
+        self.veiculo.municao.remove(tiro)
 
     def get_posicao_y(self):
-        return self.veiculo.nave.posicao["y"]
+        return self.veiculo.posicao["y"]
 
     def get_posicao_x(self):
-        return self.veiculo.nave.posicao["x"]
+        return self.veiculo.posicao["x"]
 
     def set_posicao_y(self, valor):
-        self.veiculo.nave.posicao["y"] = valor
+        self.veiculo.posicao["y"] = valor
 
     def set_posicao_x(self, valor):
-        self.veiculo.nave.posicao["x"] = valor
+        self.veiculo.posicao["x"] = valor
 
     def start_area(self):
-        return self.veiculo.nave.cria_area()
+        return self.veiculo.cria_area()
 
     def atira(self):
-        self.veiculo.nave.atira()
+        self.veiculo.atira()
 
     def figura(self):
-        return self.veiculo.imagem_nave
+        return self.veiculo.imagemObjeto
 
     def atingido(self):
-        return self.veiculo.nave.atingido
+        return self.veiculo.atingido
 
     def foi_atingido(self):
-        self.veiculo.nave.atingido = True
+        self.veiculo.atingido = True
 
     def move(self):
-        self.veiculo.nave.move()
+        self.veiculo.move()

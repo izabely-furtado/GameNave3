@@ -7,7 +7,7 @@ import pygame
 # Copyright:   (c) Gislaine  e Izabely 2015
 # Licence:     GIZ
 # -------------------------------------------------------------------------------
-from cci.Metricas import Metricas
+from src.cci.Metricas import Metricas
 
 __author__ = 'Gislaine  e Izabely'
 

@@ -1,12 +1,17 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
+#!/usr/local/bin/python
+# from enum import Enum
 
-__author__ = "20121bsi0040"
-__date__ = "$20/11/2015 09:10:50$"
-from enum import Enum
+# -------------------------------------------------------------------------------
+# Name:        Nave Maluca 3.1
+# Author:      Gislaine e Izabely
+# Created:     20/11/2015
+# Copyright:   (c) Gislaine  e Izabely 2015
+# Licence:     GIZ
+# -------------------------------------------------------------------------------
+__author__ = 'Gislaine  e Izabely'
 
-class Metricas(Enum):
+
+class Metricas(object):
     largura = 1000
     altura = 600
     lim_largura = 935
@@ -14,7 +19,4 @@ class Metricas(Enum):
     color_white = (255, 255, 255)
     color_red = (255, 0, 0)
     color_black = (0, 0, 0)
-
-
     fps = 60
-    

@@ -18,7 +18,7 @@ class INaveBuilder(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def buildimagem_nave(self):
+    def build_imagem_nave(self):
         pass
 
     @abstractmethod

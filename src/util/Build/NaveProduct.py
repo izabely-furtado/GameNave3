@@ -1,14 +1,14 @@
-from util.FabricaNaves import FabricaNave
-from cgd import Path
+from src.util.FabricaNaves import FabricaNave
+from src.cgd import Path
 
 
 class NaveProduct(object):
     def __init__(self):
         self.dano = 0
-        self.nave_fabrica = FabricaNave.FabricaNave('nome', Path.get_path() + '/Imagem/X Wing.png',
+        self.nave_fabrica = FabricaNave.FabricaNave('nome', Path.get_path() + '/Imagem/Nave/X Wing.png',
                                                     Path.get_path() + '/Imagem/Item/Clone0.png',
                                                     Path.get_path() + '/Som/MusicNave.wav')      # tipo : FabricaNaves
-        self.imagem_nave = Path.get_path() + '/Imagem/X Wing.png'                                # endereco imagem
+        self.imagem_nave = Path.get_path() + '/Imagem/Nave/X Wing.png'                                # endereco imagem
         self.imagem_explosao = Path.get_path() + '/Imagem/Item/Clone0.png'
         self.som = Path.get_path() + '/Som/MusicNave.wav'
         
@@ -28,3 +28,9 @@ class NaveProduct(object):
     
     def set_imagem_nave(self, imagem):
         self.imagem_nave = imagem
+
+    def start_area(self):
+        self.nave_fabrica.cria_area()
+
+    def get_area(self):
+        return self.nave_fabrica.get_area()

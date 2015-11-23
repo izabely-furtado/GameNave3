@@ -1,8 +1,8 @@
-from cci.Metricas import Metricas
-from cdp.Habilidades import Resistencia
-from util.FabricaNaves import FabricaNaveInimiga
+from src.cci.Metricas import Metricas
+from src.cdp.Habilidades import Resistencia
+from src.util.FabricaNaves import FabricaNaveInimiga
 
-class FabricaNavePeao(FabricaNaveInimiga):
+class FabricaNavePeao(FabricaNaveInimiga.FabricaNaveInimiga):
     def __init__(self, figura_nave, figura_explosao, som):
         super(FabricaNavePeao, self).__init__('Nave Peao', figura_nave, figura_explosao, som)
         self.pontuacao_derrotar = 10

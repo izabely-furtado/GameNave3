@@ -1,9 +1,9 @@
 import random
-from cci.Metricas import Metricas
-from cdp.Habilidades import Resistencia
-from util.FabricaNaves import FabricaNaveInimiga
+from src.cci.Metricas import Metricas
+from src.cdp.Habilidades import Resistencia
+from src.util.FabricaNaves import FabricaNaveInimiga
 
-class FabricaNaveBoss(FabricaNaveInimiga):
+class FabricaNaveBoss(FabricaNaveInimiga.FabricaNaveInimiga):
     def __init__(self, figura_nave, figura_explosao, som):
         super(FabricaNaveBoss, self).__init__('BOSS!!', figura_nave, figura_explosao, som)
         self.pontuacao_derrotar = 200

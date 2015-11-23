@@ -3,24 +3,23 @@ import sys
 import random
 import pygame
 from pygame.locals import *
-from cci.NaveFlyweightFactory import NaveFlyweightFactory
-from cdp.Personagens import Personagem
-from cih import Impressao
-from cih import JanelaMenu
-from util.Build import (NavePerdidaBuilder, NaveFugaBuilder, NaveGrupoBuilder,
-                            NavePeaoBuilder, NavePersegueBuilder, NaveJogadorBuilder)
-from cci.Metricas import Metricas
+from src.cci import NaveFlyweightFactory
+from src.cdp.Personagens import Personagem
+from src.cih import Impressao
+from src.cih import JanelaMenu
+# from src.src.util.Build import (NavePerdidaBuilder, NaveFugaBuilder, NaveGrupoBuilder,
+#                             NavePeaoBuilder, NavePersegueBuilder, NaveJogadorBuilder)
+from src.cci.Metricas import Metricas
 
 # -------------------------------------------------------------------------------
-# Name:        Nave Maluca 2.1
+# Name:        Nave Maluca 3.1
 # Author:      Gislaine e Izabely
-# Created:     09/29/2015
+# Created:     20/11/2015
 # Copyright:   (c) Gislaine  e Izabely 2015
 # Licence:     GIZ
 # -------------------------------------------------------------------------------
-
-
 __author__ = 'Gislaine  e Izabely'
+
 
 pygame.init()
 pygame.font.init()
@@ -31,7 +30,7 @@ def start_controle_som():
 
     pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
 
-    # return pygame.mixer.Sound("MusicNave.wav")
+    # return pygame.mixer.Sound("MusicNave.wav") # \()/
 
 
 def colisao_naves(nave, inimigos):
@@ -51,7 +50,7 @@ def colisao_tiro(nave, inimigos):
 
             area = inimigo.get_area()
 
-            for tiro in nave.armamento():
+            for tiro in nave.municao():
 
                 if area.colliderect(tiro.get_area()):
                     tiro.colisao = True
@@ -69,7 +68,7 @@ def cria_inimigo(naves_inimigas, num_inimigos):
 
         if naves_inimigas:
             for inimigo in naves_inimigas:
-                if not nave_criada.get_area().colliderect(inimigo.get_area):
+                if not nave_criada.get_area().colliderect(inimigo.get_area()):
                     naves_inimigas.append(nave_criada)
         else:
             naves_inimigas.append(nave_criada)
@@ -89,29 +88,29 @@ def get_evento_teclado(nave):
 
     if tecla[K_UP] or tecla[K_w]:
 
-        if nave.get_posicaox() > 0:
-            nave.set_posicaoy(nave.get_posicaoy() - 25)
+        if nave.get_posicao_x() > 0:
+            nave.set_posicao_y(nave.get_posicao_y() - 25)
 
         nave.start_area()
 
     elif tecla[K_DOWN] or tecla[K_s]:
 
-        if nave.get_posicaoy() < Metricas.lim_altura:
-            nave.set_osicaoy(nave.get_posicaoy() + 25)
+        if nave.get_posicao_y() < Metricas.lim_altura:
+            nave.set_posicao_y(nave.get_posicao_y() + 25)
 
         nave.start_area()
 
     elif tecla[K_LEFT] or tecla[K_a]:
 
-        if nave.get_posicaox() > 0:
-            nave.set_posicaox(nave.get_posicaox() - 25)
+        if nave.get_posicao_x() > 0:
+            nave.set_posicao_x(nave.get_posicao_x() - 25)
 
         nave.start_area()
 
     elif tecla[K_RIGHT] or tecla[K_d]:
 
-        if nave.get_posicaox() < Metricas.lim_largura:
-            nave.set_posicaox(nave.get_posicaox() + 25)
+        if nave.get_posicao_x() < Metricas.lim_largura:
+            nave.set_posicao_x(nave.get_posicao_x() + 25)
 
         nave.start_area()
 
@@ -179,7 +178,7 @@ def menu_instrucao():
     tela = saida.imprime_instrucao()
     menu_itens = ("Voltar", "Iniciar")
 
-    funcs = {"Voltar": menu_inicial(), "Iniciar": jogar}
+    funcs = {"Voltar": menu_inicial, "Iniciar": jogar}
 
     tam_fonte = 30
     font_name = pygame.font.get_default_font()
@@ -194,7 +193,7 @@ def menu_inicial():
 
     menu_itens = ("Iniciar Jogo", "Instruções", "Sair")
 
-    funcs = {"Iniciar Jogo": jogar, "Sair": sys.exit, "Instruções": menu_instrucao()}
+    funcs = {"Iniciar Jogo": jogar, "Sair": sys.exit, "Instruções": menu_instrucao}
 
     tam_fonte = 30
     font_name = pygame.font.get_default_font()
@@ -205,25 +204,29 @@ def menu_inicial():
 
 
 def move_tiro(nave):
-    if nave.armamento():
-        for tiro in nave.armamento():
+    if nave.municao():
+        for tiro in nave.municao():
             tiro.atira()
 
 
 def remove_tiro(nave):
-    if nave.armamento():
-        for tiro in nave.armamento():
-            if tiro.colisao or not tiro.ativo:
-                nave.remove_tiro(tiro)
+    if nave.municao():
+        for tiro in nave.municao():
+            if tiro.colisao:
+                if not tiro.ativo:
+                    nave.municao().remove(tiro)
 
 
+# ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 def jogar():
     pygame.init()
     pygame.font.init()
+
     saida = Impressao.Impressao()
     nave = cria_nave()
     colisao = False
     num_inimigos = 10
+
     naves_inimigas = []
     relogio = pygame.time.Clock()
 
@@ -239,8 +242,8 @@ def jogar():
             move_nave_inimiga(naves_inimigas)
             move_tiro(nave)
 
-            for m in nave.armamento():
-                saida.telao.blit(m.figura(), (m.get_posicao_x(), m.get_posicao_y()))
+            for m in nave.municao():   # \()/
+                saida.telao.blit(m.figura, (m.get_posicao_x(), m.get_posicao_y()))
 
             remove_naves_inimigas(naves_inimigas)
             remove_tiro(nave)
@@ -273,46 +276,43 @@ def move_nave_inimiga(naves_inimigas):
             inimigo.move()
 
 
-def remove_naves_inimigas(naves_inimigas):
+def remove_naves_inimigas(naves_inimigas):  # \()/
     if naves_inimigas:
         for inimigo in naves_inimigas:
-            if inimigo.get_posicao_y() > Metricas.altura or inimigo.atingido():
-                naves_inimigas.remove(inimigo)
+            if inimigo.get_posicao_y() > Metricas.altura:
+                if inimigo.atingido():
+                    naves_inimigas.remove(inimigo)
 
 
 def carregar():
     Impressao.Impressao()
 
 
-def cria_nave():
-    factory = NaveFlyweightFactory.__init__(NaveFlyweightFactory)
-    nave_escolhida = factory.get_Standard_Jogador(1)
-
-    n = Personagem.Personagem.criando_nave(nave_escolhida)
-    n.set_posicaox(int(Metricas.lim_largura) / 2)
-    n.set_posicaoy(Metricas.lim_altura)
+def cria_nave():  # &&&&&&&&&&
+    factory = NaveFlyweightFactory.NaveFlyweightFactory()
+    nave_escolhida = factory.get_standard_jogador(1)[1]
+    n = Personagem.Personagem(nave_escolhida)
+    n.set_posicao_x(int(Metricas.lim_largura) / 2)
+    n.set_posicao_y(Metricas.lim_altura)
     n.start_area()
-
     return n
 
 
-def cria_nave_inimigo():
+def cria_nave_inimigo():  # $$$$$$$$
     aleatorio = random.randint(0, 20)
-    factory = NaveFlyweightFactory.__init__(NaveFlyweightFactory)
+    factory = NaveFlyweightFactory.NaveFlyweightFactory()
     if 0 <= aleatorio <= 3:
-        nave_escolhida = factory.get_Standard_Persegue(5)
+        nave_escolhida = factory.get_standard_persegue(5)[1]
     elif 4 <= aleatorio <= 8:
-        nave_escolhida = factory.get_Standard_Peao(7)
+        nave_escolhida = factory.get_standard_peao(7)[1]
     elif 9 <= aleatorio <= 11:
-        nave_escolhida = factory.get_Standard_Perdida(3)
+        nave_escolhida = factory.get_standard_perdida(3)[1]
     elif 10 <= aleatorio <= 17:
-        nave_escolhida = factory.get_Standard_Grupo(7)
+        nave_escolhida = factory.get_standard_grupo(7)[1]
     else:
-        nave_escolhida = factory.get_Standard_Fuga(1)
+        nave_escolhida = factory.get_standard_fuga(1)[1]
 
-    n = Personagem.Personagem.criando_nave(nave_escolhida)
-    n.set_posicaoX(random.randrange(int(Metricas.lim_largura) - 20))
-    n.set_posicaoY(0)
+    n = Personagem.Personagem(nave_escolhida)
     n.start_area()
 
     return n

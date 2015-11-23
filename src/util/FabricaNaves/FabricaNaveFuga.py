@@ -1,10 +1,10 @@
-from cdp.Habilidades import Resistencia
-from util.FabricaNaves import FabricaNaveInimiga
+from src.cdp.Habilidades import Resistencia
+from src.util.FabricaNaves import FabricaNaveInimiga
 
 
-class FabricaNaveFuga(FabricaNaveInimiga):
+class FabricaNaveFuga(FabricaNaveInimiga.FabricaNaveInimiga):
     def __init__(self, figura_nave, figura_explosao, som):
-        super(FabricaNaveFuga, self).__init__('Nave de Fuga', figura_nave, figura_explosao, som)
+        super().__init__('Nave de Fuga', figura_nave, figura_explosao, som)
         self.pontuacao_derrotar = 50
         
     # """---------------ACOES-----------------"""

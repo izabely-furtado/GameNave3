@@ -3,8 +3,8 @@ import random
 import pygame
 import sys
 from pygame.rect import Rect
-from cci.Metricas import Metricas
-from cgd import Path
+from src.cci.Metricas import Metricas
+from src.cgd import Path
 # -------------------------------------------------------------------------------
 # Name:        Nave Maluca 2.1
 # Author:      Gislaine e Izabely
@@ -12,11 +12,10 @@ from cgd import Path
 # Copyright:   (c) Gislaine e Izabely 2015
 # Licence:     GIZ
 # -------------------------------------------------------------------------------
-
-
 __author__ = 'Gislaine  e Izabely'
 
 pygame.init()
+
 
 class Municao(object):
     def __init__(self, pos):
@@ -32,19 +31,20 @@ class Municao(object):
         aleatorio = random.randint(0, 10)
 
         if 0 <= aleatorio <= 3:
-            figura = pygame.image.load(Path.get_path() + "Imagem/Tiro/tiro1.png").convert_alpha()
+            figura = pygame.image.load(Path.get_path() + "/Imagem/Tiro/tiro1.png").convert_alpha()
         elif 4 <= aleatorio <= 6:
-            figura = pygame.image.load(Path.get_path() + "Imagem/Tiro/tiro2.png").convert_alpha()
+            figura = pygame.image.load(Path.get_path() + "/Imagem/Tiro/tiro2.png").convert_alpha()
         else:
-            figura = pygame.image.load(Path.get_path() + "Imagem/Tiro/tiro3.png").convert_alpha()
+            figura = pygame.image.load(Path.get_path() + "/Imagem/Tiro/tiro3.png").convert_alpha()
 
         return figura
 
     @staticmethod
     def cria_posicao(pos):
         posicao = {}
-        if (pos < Metricas.lim_largura - 30) and (pos < Metricas.lim_altura - 15):
-            posicao = {"x": pos["x"] + 30, "y": pos["y"] + 15}
+        # print(pos)
+        if (pos['x'] < Metricas.lim_largura - 30) and (pos['y'] < Metricas.lim_altura - 15):
+            posicao = {'x': pos['x'] + 30, "y": pos['y'] + 15}
         else:
             print("Posição invalida", sys.exc_info()[0])
 
@@ -66,3 +66,15 @@ class Municao(object):
         self.posicao["x"] -= self.velocidade["x"]
         self.posicao["y"] -= self.velocidade["y"]
         self.start_area()
+
+    def get_posicao_y(self):
+        return self.posicao["y"]
+
+    def get_posicao_x(self):
+        return self.posicao["x"]
+
+    def set_posicao_y(self, valor):
+        self.posicao["y"] = valor
+
+    def set_posicao_x(self, valor):
+        self.posicao["x"] = valor

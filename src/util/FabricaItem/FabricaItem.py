@@ -1,4 +1,4 @@
-from util import FabricaObjeto
+from src.util import FabricaObjeto
 
 
 class FabricaItem(FabricaObjeto):

@@ -1,13 +1,13 @@
-from util.Build import NaveBuilder
-from util.FabricaNaves import FabricaNaveFuga
-from cgd import Path
+from src.util.Build import NaveBuilder
+from src.util.FabricaNaves import FabricaNaveFuga
+from src.cgd import Path
 
 
-class NaveFugaBuilder(NaveBuilder):
+class NaveFugaBuilder(NaveBuilder.NaveBuilder):
     def __init__(self):
         super(NaveFugaBuilder, self).__init__()
         self.build_dano()
-        self.buildimagem_nave()
+        self.build_imagem_nave()
         self.build_imagem_explosao()
         self.build_som()
         self.build_nave()
@@ -18,16 +18,16 @@ class NaveFugaBuilder(NaveBuilder):
         self.nave_product.set_dano(0)
     
     #   @override
-    def buildimagem_nave(self):
-        self.nave_product.imagem_nave = Path.get_path() + "Imagem/Nave/NaveFuga.png"
+    def build_imagem_nave(self):
+        self.nave_product.imagem_nave = Path.get_path() + "/Imagem/Nave/Fuga.png"
     
     #   @override
     def build_imagem_explosao(self):
-        self.nave_product.imagem_explosao = Path.get_path() + "Imagem/Nave/NaveExplode.png"
+        self.nave_product.imagem_explosao = Path.get_path() + "/Imagem/Nave/Boss.png"
     
     #  @override
     def build_som(self):
-        self.nave_product.som = Path.get_path() + "Som/MusicNave.wav"
+        self.nave_product.som = Path.get_path() + "/Som/MusicNave.wav"
     
     #    @override
     def build_nave(self):

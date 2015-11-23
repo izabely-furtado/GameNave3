@@ -1,8 +1,9 @@
-from util.Build import NaveProduct
-from util.Build.INaveBuilder import INaveBuilder
+from src.util.Build import NaveProduct
+from src.util.Build import INaveBuilder
 from abc import (abstractmethod)
 
-class NaveBuilder(INaveBuilder):
+
+class NaveBuilder(INaveBuilder.INaveBuilder):
     def __init__(self):
         self.nave_product = NaveProduct.NaveProduct()        # tipo : naveProduct
 
@@ -18,7 +19,7 @@ class NaveBuilder(INaveBuilder):
         pass
 
     @abstractmethod
-    def buildimagem_nave(self):
+    def build_imagem_nave(self):
         pass
 
     @abstractmethod

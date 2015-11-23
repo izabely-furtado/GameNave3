@@ -1,11 +1,11 @@
 import pygame
-from cci.Metricas import Metricas
-from cdp.Habilidades.Municao import Municao
-from cdp.Habilidades.Resistencia import Resistencia
-from util.FabricaNaves.FabricaNave import FabricaNave
-from util.FabricaNaves.FabricaNaveFuga import FabricaNaveFuga
-from util.FabricaNaves.FabricaNaveGrupo import FabricaNaveGrupo
-from util.FabricaNaves.FabricaNavePeao import FabricaNavePeao
+from src.cci.Metricas import Metricas
+from src.cdp.Habilidades.Municao import Municao
+from src.cdp.Habilidades.Resistencia import Resistencia
+from src.src.util.FabricaNaves.FabricaNave import FabricaNave
+from src.src.util.FabricaNaves.FabricaNaveFuga import FabricaNaveFuga
+from src.src.util.FabricaNaves.FabricaNaveGrupo import FabricaNaveGrupo
+from src.src.util.FabricaNaves.FabricaNavePeao import FabricaNavePeao
 
 __author__ = 'IzabelyFurtado'
 
@@ -96,9 +96,9 @@ class MyTestCase(unittest.TestCase):
         resultado.posicao["y"] += 1
         resultado.cria_area()
 
-        self.assertEqual(resultado,val1.move())
+        self.assertEqual(resultado,val1.build_imagem_explosao())
 
-    def test_move_NaveGrupo_trocaEsqueda(self):
+    def test_build_imagem_explosao_NaveGrupo_trocaEsqueda(self):
         nave = FabricaNaveGrupo.__init__(FabricaNaveGrupo, Path.get_path() + "Imagem/Nave/NaveFuga.png", "figteste", "somteste")
         val1 = nave
         val1.posicao["direcao"] = "ESQUERDA"
@@ -111,10 +111,10 @@ class MyTestCase(unittest.TestCase):
         resultado.posicao["y"] += 1
         resultado.cria_area()
 
-        self.assertEqual(resultado,val1.move())
+        self.assertEqual(resultado,val1.build_imagem_explosao())
 
     """---------------------FabricaNavePeao------------------------"""
-    def test_move_NavePeao_direita(self):
+    def test_build_imagem_explosao_NavePeao_direita(self):
         nave = FabricaNavePeao.__init__(FabricaNaveGrupo, Path.get_path() + "Imagem/Nave/NaveFuga.png", "figteste", "somteste")
         val1 = nave
         val1.posicao["direcao"] = "DIREITA"
@@ -125,10 +125,10 @@ class MyTestCase(unittest.TestCase):
         resultado.posicao["x"] += 1
         resultado.cria_area()
 
-        self.assertEqual(resultado,val1.move())
+        self.assertEqual(resultado,val1.build_imagem_explosao())
 
 
-    def test_move_NavePeao_esquerda(self):
+    def test_build_imagem_explosao_NavePeao_esquerda(self):
         nave = FabricaNavePeao.__init__(FabricaNaveGrupo, Path.get_path() + "Imagem/Nave/NaveFuga.png", "figteste", "somteste")
         val1 = nave
         val1.posicao["direcao"] = "ESQUERDA"
@@ -139,9 +139,9 @@ class MyTestCase(unittest.TestCase):
         resultado.posicao["x"] -= 1
         resultado.cria_area()
 
-        self.assertEqual(resultado,val1.move())
+        self.assertEqual(resultado,val1.build_imagem_explosao())
 
-    def test_move_NavePeao_trocaDireita(self):
+    def test_build_imagem_explosao_NavePeao_trocaDireita(self):
         nave = FabricaNavePeao.__init__(FabricaNaveGrupo, Path.get_path() + "Imagem/Nave/NaveFuga.png", "figteste", "somteste")
         val1 = nave
         val1.posicao["direcao"] = "DIREITA"
@@ -153,9 +153,9 @@ class MyTestCase(unittest.TestCase):
         resultado.posicao["y"] += 1
         resultado.cria_area()
 
-        self.assertEqual(resultado,val1.move())
+        self.assertEqual(resultado,val1.build_imagem_explosao())
 
-    def test_move_NavePeao_trocaEsquerda(self):
+    def test_build_imagem_explosao_NavePeao_trocaEsquerda(self):
         nave = FabricaNavePeao.__init__(FabricaNaveGrupo, Path.get_path() + "Imagem/Nave/NaveFuga.png", "figteste", "somteste")
         val1 = nave
         val1.posicao["direcao"] = "ESQUERDA"
@@ -167,7 +167,7 @@ class MyTestCase(unittest.TestCase):
         resultado.posicao["y"] += 1
         resultado.cria_area()
 
-        self.assertEqual(resultado,val1.move())
+        self.assertEqual(resultado,val1.build_imagem_explosao())
 
 
 

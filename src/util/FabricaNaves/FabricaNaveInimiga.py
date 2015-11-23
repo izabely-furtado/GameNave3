@@ -1,7 +1,7 @@
-from util.FabricaNaves import FabricaNave
+from src.util.FabricaNaves import FabricaNave
 
 
-class FabricaNaveInimiga(FabricaNave):
+class FabricaNaveInimiga(FabricaNave.FabricaNave):
     def __init__(self, nome, figura_nave, figura_explosao, som):
         super(FabricaNaveInimiga, self).__init__(nome, figura_nave, figura_explosao, som)
         self.pontuacao_derrotar = 0

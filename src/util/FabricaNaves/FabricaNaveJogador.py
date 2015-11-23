@@ -1,10 +1,10 @@
-from cdp.Habilidades import Resistencia
-from util.FabricaNaves import FabricaNave
+from src.cdp.Habilidades import Resistencia
+from src.util.FabricaNaves import FabricaNave
 
 
-class FabricaNaveJogador(FabricaNave):
+class FabricaNaveJogador(FabricaNave.FabricaNave):
     def __init__(self, nome, figura_nave, figura_explosao, som):
-        super(FabricaNaveJogador).__init__(nome, figura_nave, figura_explosao, som)
+        super().__init__(nome, figura_nave, figura_explosao, som)
         self.tempoMissel = 0
         self.municao = self.cria_municao()
 

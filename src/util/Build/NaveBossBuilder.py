@@ -1,13 +1,13 @@
-from cgd import Path
-from util.Build import NaveBuilder
-from util.FabricaNaves import FabricaNaveBoss
+from src.cgd import Path
+from src.util.Build import NaveBuilder
+from src.util.FabricaNaves import FabricaNaveBoss
 
 
-class NaveBossBuilder(NaveBuilder):
+class NaveBossBuilder(NaveBuilder.NaveBuilder):
     def __init__(self):
         super(NaveBossBuilder, self).__init__()
         self.build_dano()
-        self.buildimagem_nave()
+        self.build_imagem_nave()
         self.build_imagem_explosao()
         self.build_som()
         self.build_nave()
@@ -18,7 +18,7 @@ class NaveBossBuilder(NaveBuilder):
         self.nave_product.dano = 0
     
     #   @override
-    def buildimagem_nave(self):
+    def build_imagem_nave(self):
         self.nave_product.imagem_nave = Path.get_path() + 'Imagem/Nave/NaveBoss.png'
     
     #   @override

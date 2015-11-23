@@ -1,11 +1,11 @@
 import random
-from cci.Metricas import Metricas
-from cdp.Habilidades import Resistencia
-from util.FabricaNaves import FabricaNaveInimiga
+from src.cci.Metricas import Metricas
+from src.cdp.Habilidades import Resistencia
+from src.util.FabricaNaves import FabricaNaveInimiga
 
-class FabricaNavePersegue(FabricaNaveInimiga):
+class FabricaNavePersegue(FabricaNaveInimiga.FabricaNaveInimiga):
     def __init__(self, figura_nave, figura_explosao, som):
-        super(FabricaNavePersegue).__init__('Nave Perseguidora', figura_nave, figura_explosao, som)
+        super().__init__('Nave Perseguidora', figura_nave, figura_explosao, som)
         self.pontuacao_derrotar = 40
         self.municao = self.cria_municao()
 

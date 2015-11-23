@@ -3,8 +3,8 @@ __author__ = 'IzabelyFurtado'
 class BuildGeral(object):
     @staticmethod
     def criar(name):
-        path = 'util.Build.Nave'+ name + 'Builder'
-        #'util.Build.NavesGrupoBuilder'
+        path = 'src.src.util.Build.Nave'+ name + 'Builder'
+        #'src.src.util.Build.NavesGrupoBuilder'
         components = name.split('.')
         mod = __import__(components[0])
         for comp in components[1:]:

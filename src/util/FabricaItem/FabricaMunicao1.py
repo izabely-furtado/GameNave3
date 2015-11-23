@@ -1,4 +1,4 @@
-from util.FabricaItem import FabricaMunicao
+from src.util.FabricaItem import FabricaMunicao
 from cgd import Path
 
 
