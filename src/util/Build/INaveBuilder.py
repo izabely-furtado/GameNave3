@@ -1,13 +1,13 @@
-from util.Build import NaveProduct
-from util.Build.INaveBuilder import INaveBuilder
-from abc import (abstractmethod)
+__author__ = 'IzabelyFurtado'
 
-class NaveBuilder(INaveBuilder):
-    def __init__(self):
-        self.nave_product = NaveProduct.NaveProduct()        # tipo : naveProduct
+from abc import (ABCMeta, abstractmethod)
 
+
+class INaveBuilder(metaclass=ABCMeta):
+
+    @abstractmethod
     def get_nave(self):
-        return self.nave_product
+        pass
 
     @abstractmethod
     def build_dano(self):
