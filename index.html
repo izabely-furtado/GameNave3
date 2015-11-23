@@ -1,0 +1,342 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Gamenave3 by izabely-furtado</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Gamenave3</h1>
+        <p>Trabalho a ser feito para o professor de POO2, como um dos requisitos para nota para o Trabalho 2</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/izabely-furtado/GameNave3" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/izabely-furtado/GameNave3/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/izabely-furtado/GameNave3/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h3>
+<a id="trabalho-da-disciplina-programaÇÃo-orientada-a-objetos-2" class="anchor" href="#trabalho-da-disciplina-programa%C3%87%C3%83o-orientada-a-objetos-2" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>TRABALHO DA DISCIPLINA PROGRAMAÇÃO ORIENTADA A OBJETOS 2</strong>
+</h3>
+
+<p><strong>Projeto: Jogo Nave</strong></p>
+
+<p><strong>1.    Registro de Alterações</strong></p>
+
+<p><strong>Versão</strong> = 3</p>
+
+<p><strong>Responsáveis</strong> = Izabely Corrêa e Gislaine Almeida</p>
+
+<p><strong>Data</strong> = 22/11/2015</p>
+
+<p><strong>Alterações</strong> = </p>
+
+<ul>
+<li>Modificação do Diagrama Build,</li>
+<li>Diagrama e Explicação do Padrão Flywheigt, </li>
+<li>Implementação do Reflection</li>
+<li>Explicação das mudanças, </li>
+<li>Descrição da Utilização DAO e </li>
+<li>Refatoração</li>
+<li>Foram retiradas as variáveis globais e foi feito o Enum <strong>Metricas</strong>
+</li>
+</ul>
+
+<h3>
+<a id="2----introdução" class="anchor" href="#2----introdu%C3%A7%C3%A3o" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>2.    Introdução</strong>
+</h3>
+
+<p>Este documento apresenta um relatório de projeto e engenharia do sistema de um jogo de naves. Este documento está organizado da seguinte forma: a seção 3 apresenta o padrão Fábrica utilizado, seus respectivos  diagramas, motivações e explicações, a seção 4 apresenta o padrão Builder utilizado, seus respectivos  diagramas, motivações e explicações , a seção 5 demonstra o diagrama de classes e o de composição de estruturas e descreve a utilização MVC, a seção 6 demonstra a diferença evidenciada com a refatoração do código, a seção 7 descreve um passo a passo de como deve rodar o programa.</p>
+
+<h3>
+<a id="3----padrão-fábrica" class="anchor" href="#3----padr%C3%A3o-f%C3%A1brica" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>3.    Padrão Fábrica</strong>
+</h3>
+
+<p>Aplicada a Objetos nas Fases do Jogo: Naves e Itens</p>
+
+<p><img src="https://github.com/izabely-furtado/GameNave2/blob/master/diagramas/PadraoFabrica.png?raw=true" alt=""></p>
+
+<p><strong>3.1.  Motivo da Utilização</strong></p>
+
+<p>O padrão em questão foi utilizado para fabricação de objetos que estarão em cada fase, sendo esses itens e/ou naves.</p>
+
+<p>O Factory Method foi utilizado para esse projeto, pois nessas condições o padrão nos oferece um meio de desligar a implementação de um produto final em si. Por exemplo, caso quisesse desenvolver um novo inimigo, a criação deste estaria facilitada e em nível de chamada, pode-se chamar qualquer nave inimiga, como uma nave ou simplesmente um objeto. </p>
+
+<p>Além disso, o padrão fábrica, faz com que não haja repetição de código, dado que caso queira fabricar um novo item, poderia já abstrair este como um objeto e somente implementar as modificações ocasionadas no jogo. Mas isso tudo é feito de forma mais intuitiva, como uma espécie de montagem facilitadora, uma casca que define a criação de elementos presentes em cada classe. Assim, há um local único para ser modificado, assim, um local único para fazer manutenção, dando um código flexível e extensível no futuro.</p>
+
+<p>Para completar, caso o uma nave específica ou um item precise ser desligado ou deletado, a alteração não irá afetar demais classes, principalmente não irá afetar seu “criador”, pois eles não estarão fortemente ligados. Facilitando, assim, a manutenção do código, pois encapsula esse comportamento de instanciação.</p>
+
+<p><strong>3.2. Explicação do Diagrama</strong></p>
+
+<p>No diagrama de classe acima temos a classe <strong>FabricaAtributoAcao</strong> definida como interface (já que Python não possui interface ela é apenas uma classe abstrata com funções abstratas) que define os métodos que deverão ser implementados por sua subclasse, a classe abstrata <strong>FabricaObjeto</strong>.</p>
+
+<p>Ambas classes, tanto FabricaItem, quanto FabricaNave, que estendem a classe FabricaObjeto serão objetos na tela que possuem o mesmo comportamento de, ou seja, se movem e possuem uma figura que os representa. Estendendo de FabricaObjeto, possuem os atributos e podem utilizar e/ou sobrescrever os métodos existentes no super.</p>
+
+<p>No diagrama de classes temos a classe <strong>FabricaObjeto</strong> como abstrata que define atributos que cabem a qualquer nave e objeto no jogo, além dos métodos que definem comportamentos comuns entre as naves e itens e que deverão ser sobrescritos por cada subclasse, que são:</p>
+
+<ul>
+<li>move()</li>
+<li>criaVelocidade() </li>
+</ul>
+
+<p>Isso deve ser feito, pois cada nave possui seu próprio movimento, velocidade e, já que é uma nave também, sua própria resistência, no caso de um item, este deve possuir suas próprias modificações.</p>
+
+<p><strong>3.2.1.    Fabrica Naves</strong></p>
+
+<p><strong>3.2.1.1.  Inimigas</strong></p>
+
+<p>Todas as naves inimigas devem conter o dado referente sobre a pontuação que o jogador arrecada por derrota-la, sendo que a explosão ficou igual a todas as naves por conveniência, no entanto, só algumas naves inimigas atiram.</p>
+
+<p>Sendo assim, temos a classe <strong>FabricaNaveInimiga</strong> como abstrata estende <strong>FabricaNave</strong> e define atributos que cabem a qualquer nave inimiga, além disso, as classes que a estende, sobrescrevem as funções necessárias para toda nave, já mencionadas.</p>
+
+<p>Alguns naves inimigas, além de implementarem as funções mencionadas, implementam atributos e métodos que possibilitam atirar.</p>
+
+<p><strong>3.2.1.2.  Jogador</strong></p>
+
+<p>A Nave do Jogador é análoga a qualquer nave, só que esta deve permitir que o jogador possa atirar em seus inimigos. </p>
+
+<p><strong>3.2.2.    Fabrica Itens</strong></p>
+
+<p>Cada item faz modificações na nave ou no status do jogador e, como tal, possui seu preço, caso queira ser trocada por uma pontuação e a probabilidade de aparecimento durante uma fase. Além de possuir os atributos e métodos que estão no super estendido, <strong>FabricaObjeto</strong>.</p>
+
+<h3>
+<a id="4----padrão-builder" class="anchor" href="#4----padr%C3%A3o-builder" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>4.    Padrão Builder</strong>
+</h3>
+
+<p>Aplicada a Fabrica de Naves</p>
+
+<p><img src="https://github.com/izabely-furtado/GameNave3/blob/gh-pages/diagramas/PadraoBuild.png?raw=true" alt=""></p>
+
+<p><strong>4.1.  Motivo da Utilização</strong></p>
+
+<p>A motivação foi separar a construção de um objeto complexo de sua representação de modo que o mesmo processo de construção possa criar diferentes representações.</p>
+
+<p>Nesse caso deu à separação da fabricação de uma nave, do dano causado a mesma, do som que esta emite e da imagem referente a ela e sua explosão. Seguindo em si, a mesma ideia dos padrões Factory Method e Abstract Factory. No entanto, permitindo separar os passos da construção da nave em pequenos métodos que são:</p>
+
+<ul>
+<li>BuildDano()</li>
+<li>BuildImagemNave()</li>
+<li>BuildImagemExplosao()</li>
+<li>BuildSom()</li>
+</ul>
+
+<p>No padrão Builder temos também uma interface comum para todos os objetos que constroem outros objetos. Essa interface Builder define todos os passos necessários para construir  cada tipo de nave, sendo essa a de um jogador ou inimiga.</p>
+
+<p><strong>4.2.  Explicação do Diagrama</strong></p>
+
+<p><strong>4.2.1.    NaveProduct</strong></p>
+
+<p>Nada mais é do que uma estrutura de dados que armazena as informações de uma nave. A nossa classe Builder vai possui um método para construir cada um dos dados do produto em questão.</p>
+
+<p><strong>4.2.2.    NaveBuilder</strong></p>
+
+<p>Nesta classe temos a nave que será construída, os passos para sua construção e um método que devolve a nave construída. </p>
+
+<p>Está classe em questão é abstrata os métodos em si serão implementados por cada classe abstrata que o estender, não existindo assim um “algoritmo” bem definido, o algoritmo será definido em outro lugar nos filhos.  Sendo assim, em cada uma das classes que o estender esses métodos implementar estarão “personalizando” a nave.</p>
+
+<p><strong>4.2.3.    NaveJogoDirector</strong></p>
+
+<p>A classe chamada de <strong>Director</strong>, utiliza a estrutura do <strong>Builder</strong> para definir o algoritmo de construção do Produto.</p>
+
+<p>Sendo que, dado um Builder, a classe vai executar os métodos de construção, definindo assim o algoritmo de construção de naves, e depois devolve nave. O código cliente vai lidar apenas com o Director, toda a estrutura e algoritmos utilizados para construir a nave fica por debaixo dos panos.</p>
+
+<h3>
+<a id="5--padrão-peso-mosca" class="anchor" href="#5--padr%C3%A3o-peso-mosca" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.  Padrão Peso-Mosca</h3>
+
+<p>Diagrama que representa a implementação do padrão peso-mostra aplicada a criação de novas naves inimigas</p>
+
+<p><img src="https://github.com/izabely-furtado/GameNave3/blob/gh-pages/diagramas/PadraoFlyweight.png?raw=true" alt=""></p>
+
+<p><strong>Motivo da Utilização</strong></p>
+
+<blockquote>
+<p>"Esse padrão como usa compartilhamento para suportar eficientemente grandes quantidades de objetos de granularidade fina." - [1] GAMMA, Erich et al. Padrões de Projeto: Soluções reutilizáveis de software orientado a objetos.</p>
+</blockquote>
+
+<p>Esse padrão foi utilizado para reduzir o espaço de memória e processamento exigido para a construção de cada nova nave inserida no jogo. A utilização foi dado devido a que várias naves semelhantes são inseridas aleatoriamente no jogo.</p>
+
+<p>Pela intenção percebemos que o padrão Flyweight cria uma estrutura de compartilhamento de objetos pequenos. Para o exemplo citado, o padrão será utilizado no compartilhamento de imagens entre as entidades, além de alguns atributos não mutáveis.</p>
+
+<p><strong>Exemplos de Código</strong></p>
+
+<p>` 
+class NaveFlyweightFactory (object):</p>
+
+<pre><code> def __init__(self):
+
+     self._standardBoss = [0, None]
+     self._standardFuga = [0, None]
+     self._standardGrupo = [0, None]
+     self._standardJogador = [0, None]
+     self._standardPeao = [0, None]
+     self._standardPerdida = [0, None]
+     self._standardPersegue = [0, None]
+</code></pre>
+
+<p>`</p>
+
+<p>O <strong><em>init</em></strong> é feito de modo q inicializar a quantidades de naves como 0 e as naves como ainda não existentes, com isso o modo caso ainda não tenha sido setados os valores as naves não ocupam muito espaço e caso contrário, se for a primeira vez a nave é criada normalmente, mas das próximas vezes só é mudada a quantidade, ela não é criada do zero. Assim como mostrado no <strong>get_Standard_Boss</strong> abaixo.</p>
+
+<p>`
+     def get_Standard_Boss(self, quantNave):</p>
+
+<pre><code>     e = self._standardBoss
+     if e[1] == None:
+         e[1] = NaveBossBuilder.__init__(NaveBossBuilder)
+         self._standardBoss[0] = quantNave
+         self._standardBoss[1] = e[1]
+
+     return e 
+</code></pre>
+
+<p>`</p>
+
+<p><strong>Explicação do Diagrama</strong></p>
+
+<p>&lt;&lt;&lt;&gt;&gt;&gt;</p>
+
+<h3>
+<a id="6--banco-de-dados---activerecord" class="anchor" href="#6--banco-de-dados---activerecord" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.  Banco de Dados - ActiveRecord</h3>
+
+<p>Diagrama que representa a implementação para o uso e criação do banco de dados</p>
+
+<p><strong>Motivo da Utilização</strong></p>
+
+<p>&lt;&lt;&lt;&gt;&gt;&gt;</p>
+
+<p><strong>Explicação do Diagrama</strong></p>
+
+<p>&lt;&lt;&lt;&gt;&gt;&gt;</p>
+
+<h3>
+<a id="7--mvc" class="anchor" href="#7--mvc" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.  MVC</h3>
+
+<p><strong>Diagrama de Composição de Estruturas</strong></p>
+
+<p><img src="https://github.com/izabely-furtado/GameNave2/blob/master/diagramas/ComposicaoEstrutural.png?raw=true" alt=""></p>
+
+<p>Esse diagrama destina-se a descrição dos relacionamentos entre os elementos. Utilizado para descrever a colaboração interna de classes, interfaces ou componentes para especificar uma funcionalidade.</p>
+
+<p>Essa colaboração interna começa a se basear no modelo MVC, que se trata de um padrão de arquitetura de software que separa a representação da informação da interação do usuário com ele. Utilizando-se das ideias centrais por trás do MVC, que são a reusabilidade de código e separação de conceitos.</p>
+
+<p>O modelo consiste nos dados da aplicação, regras de negócios, lógica e funções, que nesse caso estão na <strong>CamadaDomínioProblema</strong>, que possui as classes que foram indicadas no diagrama de classes.</p>
+
+<p>Uma visão pode ser qualquer saída de representação dos dados, que estão na <strong>CamadaGestaoDados</strong>, como as músicas tocadas no jogo e as imagens que demonstram as naves a as munições, por exemplo.  Assim como podem ser representação de dados que pode se haver uma interação, como botões e janelas, que estão na <strong>CamadaInteraçãoHumana</strong>.</p>
+
+<p>O controlador faz a mediação da entrada, convertendo-a em comandos para o modelo ou visão, estão nesse caso na CamadaControleInterface.</p>
+
+<p>Assim, a partir disse a camada de aplicação da nave, chama em uma linha a função da <strong>CamadaControleInterface</strong>  a função que chama o menu inicial.</p>
+
+<h3>
+<a id="8--refatoração-do-código---avaliação-sonar" class="anchor" href="#8--refatora%C3%A7%C3%A3o-do-c%C3%B3digo---avalia%C3%A7%C3%A3o-sonar" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.  Refatoração do Código - Avaliação SONAR</h3>
+
+<p><strong>Resultados do Sonar</strong></p>
+
+<p><strong>1. Na primeira versão</strong></p>
+
+<p><img src="https://github.com/izabely-furtado/GameNave2/blob/master/diagramas/sonar1.png?raw=true" alt=""></p>
+
+<p><strong>2. Na segunda versão</strong></p>
+
+<p><img src="https://github.com/izabely-furtado/GameNave2/blob/master/diagramas/sonar2.png?raw=true" alt=""></p>
+
+<p>Os padrões de projeto, como já mencionados acima, ajudaram para que o código fosse melhor avaliado pelo sonar.</p>
+
+<p><strong>3. Na segunda versão</strong></p>
+
+<p>&lt;&lt;&lt;&gt;&gt;&gt;</p>
+
+<p>Dado o uso do método fábrica, por exemplo, o nível de duplicação do código está em 0.0%. </p>
+
+<p>E, isso ocorreu mesmo com a criação de diversas novas classes referentes a objetos na tela em geral, tanto itens, quanto naves foram “fabricadas” de modo a fazer com que não houvesse essa duplicação. Dado a percepção do que havia em comum entre as classes.</p>
+
+<p>O padrão builder, assim como o fábrica funcionou dá mesma forma. Só que evidenciando fatores mutáveis nas naves.</p>
+
+<p>Além disso, funções escritas com poucas linhas de forma objetiva e intuitiva, além de ajudar na troca de código dentre o grupo, melhorou a nota referente a funções do sonar.
+Mas aplicar o padrão fez com que as linhas de código aumentassem e muito de início, no entanto, por exemplo, os padrões fábrica e builder facilitam caso queira se inserir uma nova classe com comportamento diferenciado. Essa facilidade é adquirida de duas formas:</p>
+
+<p>Considerando que já há um molde para a criação do novo objeto, não vai haver a “criação da roda” já que muitos quesitos simplesmente serão aproveitados.</p>
+
+<p>O aproveitamento do código já existente evita a duplicação</p>
+
+<p>Já nessa terceira versão houve uma motivação para serem feitas algumas modificações necessárias, mas primordialmente não mudou muito na nota dada pelo sonar, dado que o padrão implementado, em si, modifica mais em tempo de execução do na formatação do código em si.</p>
+
+<p>Na real aumentaram o número de classes, pois passou ser mais orientado a interface e por conta dos diversos padrões implementados.</p>
+
+<h3>
+<a id="9--testes-unitários" class="anchor" href="#9--testes-unit%C3%A1rios" aria-hidden="true"><span class="octicon octicon-link"></span></a>9.  Testes Unitários</h3>
+
+<p>Os testes unitários foram aplicados nos seguinte locais:</p>
+
+<ul>
+<li>nas funções de negócio relacionadas ao <strong>Controle</strong>, verificando se as naves obedecem aos parâmetros da tela</li>
+<li>nas funções de contrução e criação relacionadas a <strong>FabricaNave</strong> e seus descendentes, primordialmente relacionado aos movimentos das naves</li>
+<li>nas funções do <strong>NaveBuilder</strong> relacionadas e inserção de dano nas naves</li>
+<li>nas habilidades relacionadas primordialmente a <strong>Munição</strong>
+</li>
+<li>no <strong>Jogador</strong> relacionadas as funções que modificam os atributos do mesmo</li>
+</ul>
+
+<h3>
+<a id="10-reflection" class="anchor" href="#10-reflection" aria-hidden="true"><span class="octicon octicon-link"></span></a>10. Reflection</h3>
+
+<p>Visando fazer com que o programa tenha a capacidade de um programa de observar ou até mesmo modificar a sua estrutura ou comportamento de uma nave em tempo de execução foi usado o <strong>Reflection</strong> relacionando com a construção e um <strong>BuildGeral</strong> para a criação de naves da seguinte forma:</p>
+
+<p>`
+class BuildGeral(object):</p>
+
+<pre><code>@staticmethod
+def criar(name):
+    path = 'util.Build.Nave'+ name + 'Builder'
+    #'util.Build.NavesGrupoBuilder'
+    components = name.split('.')
+    mod = __import__(components[0])
+
+    for comp in components[1:]:
+        mod = getattr(mod, comp)
+</code></pre>
+
+<p>`</p>
+
+<h3>
+<a id="10-instalação" class="anchor" href="#10-instala%C3%A7%C3%A3o" aria-hidden="true"><span class="octicon octicon-link"></span></a>10. Instalação</h3>
+
+<p>Futuramente o jogo pretende gerar um executável para facilitar a inicialização do jogo para ser usado, mas enquanto essas melhorias não são implementadas algumas configurações devem ser realizadas. </p>
+
+<p>Para que o jogo nave rode em um computador é necessário fazer a instalação do python versão 3.4, foi utilizado e a biblioteca pygame compatível com a versão do python utilizada. Utilizando uma ide que possa ser configurado o Python para interpretar, o programa pode ser rodado e jogado, ainda não como gostaríamos devido a vários contratempo tecnológicos e de aprendizado, mas em uma versão bem básica. </p>
+
+<p><strong>Observação:</strong> Ao tentar rodar no Windows pode ser que não seja possível executar, pois a biblioteca de jogos para esse sistema só abrange até o python 3.2 e o programa utiliza como base outra versão. Por algum motivo que ainda não descobrimos, as imagens não estão sendo possíveis de ser carregadas sem que se passe o caminho das mesmas.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/izabely-furtado">izabely-furtado</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
