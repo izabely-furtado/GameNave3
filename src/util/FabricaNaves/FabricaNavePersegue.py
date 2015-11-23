@@ -21,17 +21,17 @@ class FabricaNavePersegue(FabricaNaveInimiga.FabricaNaveInimiga):
         elif self.posicao["x"] == Metricas.lim_largura:
             self.posicao["x"] -= self.velocidade["x"]
         elif self.posicao["x"] == 0:
-            self.posicao["x"] += self.velocidade["x"]
+            self.posicao["x"] += self.velocidade["x"]+2
 
-        self.posicao["y"] += self.velocidade["y"]
+        self.posicao["y"] += self.velocidade["y"]+2
         self.cria_area()
 
-    # """--------------ATRIBUTO-------------------"""
+    # """------------ATRIBUTO-------------------"""
     
     # @abc.override
     @staticmethod
     def cria_velocidade():
-        return {"x": 1, "y": 1}
+        return {"x": 2, "y": 2}
     
     # @abc.override
     @staticmethod
